@@ -1,0 +1,22 @@
+# strong_multi_tenant manifest. Hand-written source of truth.
+#
+# Usage:
+#   - roots: tables whose `id` is the tenant key.
+#   - direct: tables that carry a tenant_id column directly.
+#   - skip: tables to exclude (e.g. queue / blob tables).
+#   - parent_check: per-table override; v1 supports only `trust_app`.
+#
+# After editing, run: rake strong_multi_tenant:build
+
+roots:
+  # - organizations
+
+direct:
+  # posts: organization_id
+
+skip:
+  # - active_storage_blobs
+  # - solid_queue_jobs
+
+parent_check:
+  # payment_transactions: runtime_exists   # v1.x, not yet implemented
